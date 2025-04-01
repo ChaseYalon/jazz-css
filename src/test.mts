@@ -1,5 +1,6 @@
 import {cssClass,cssRGBA,Main} from "./classes.mjs";
-
+import path from "path";
+import {fileURLToPath} from "url"
 Main.setClasses = [
     new cssClass(
         {
@@ -16,3 +17,6 @@ Main.setClasses = [
         }
     )
 ]
+let toJoin = fileURLToPath(import.meta.url)
+toJoin.concat("..","build","global.css")
+Main.compile(path.join(toJoin))

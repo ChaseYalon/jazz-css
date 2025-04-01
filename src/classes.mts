@@ -1,5 +1,4 @@
-import fs, { glob } from "fs";
-
+import fs from "fs";
 export class cssRGBA {
     r : number;
     g : number;
@@ -87,6 +86,7 @@ ${input.config.NAME} {
     }
 
     public static compile(path:string):void{
+
         const globalCssExisits:boolean = this.checkFileExists(path);
         if(globalCssExisits){
             try {
@@ -100,8 +100,7 @@ ${input.config.NAME} {
         for(let i = 0; i < this.getProps.length; i++){
             toWrite = toWrite.concat(this.compileClass(this.getProps[i]));
         }
-        console.log("toWrite is ",toWrite);
         console.log("Path is ",path);
-        fs.writeFileSync(path,toWrite);
+        fs.writeFileSync("/home/ChaseYalon/jazz-css/build/global.css",toWrite);
     }
 }

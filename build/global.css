@@ -1,0 +1,10 @@
+
+.hi {
+accent-color: rgba(255,255,255,1);
+position: absolute;
+
+}
+.bye {
+position: static;
+
+}
