@@ -18,7 +18,7 @@ export class cssRGBA {
 export interface cssInput {
     "NAME" : string; /*name of the class with the dot so "<div class="hi"></div>" would be const whatever = new cssClass({NAME : .hi})*/
     "ACCENT_COLOR"?: cssRGBA; /*CSS acccent collor propertey*/
-    "ALLIGN_CONTENT"?:"normal"|"start"|"center"|"end"|"flex-start"|"flex-end"; /*there are more proppeties to add */
+    "ALIGN_CONTENT"?:"normal"|"start"|"center"|"end"|"flex-start"|"flex-end"; /*there are more proppeties to add */
     "POSITION"?: "static"|"relative"|"absolute"|"fixed"|"sticky"; /*css position propertey*/
 
 }
@@ -70,8 +70,8 @@ ${input.config.NAME} {
             }
         }
         if(input.config.hasOwnProperty("ALIGN_CONTENT")){
-            if(typeof(input.config.ALLIGN_CONTENT)!=undefined){
-                let toAdd = `align-content: ${input.config.ALLIGN_CONTENT};\n`
+            if(typeof(input.config.ALIGN_CONTENT)!=undefined){
+                let toAdd = `align-content: ${input.config.ALIGN_CONTENT};\n`
                 localCSS = localCSS.concat(toAdd);
             }
         }
@@ -100,7 +100,6 @@ ${input.config.NAME} {
         for(let i = 0; i < this.getProps.length; i++){
             toWrite = toWrite.concat(this.compileClass(this.getProps[i]));
         }
-        console.log("Path is ",path);
         fs.writeFileSync("/home/ChaseYalon/jazz-css/build/global.css",toWrite);
     }
 }

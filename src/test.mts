@@ -1,6 +1,5 @@
 import {cssClass,cssRGBA,Main} from "./classes.mjs";
-import path from "path";
-import {fileURLToPath} from "url"
+
 Main.setClasses = [
     new cssClass(
         {
@@ -13,10 +12,9 @@ Main.setClasses = [
         {
             "NAME":".bye",
             "POSITION":"static",
-            "ALLIGN_CONTENT":"center"
+            "ALIGN_CONTENT":"center"
         }
     )
 ]
-let toJoin = fileURLToPath(import.meta.url)
-toJoin.concat("..","build","global.css")
-Main.compile(path.join(toJoin))
+
+Main.compile("thisSucks")

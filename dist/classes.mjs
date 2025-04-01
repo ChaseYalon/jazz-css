@@ -62,8 +62,8 @@ ${input.config.NAME} {
             }
         }
         if (input.config.hasOwnProperty("ALIGN_CONTENT")) {
-            if (typeof (input.config.ALLIGN_CONTENT) != undefined) {
-                let toAdd = `align-content: ${input.config.ALLIGN_CONTENT};\n`;
+            if (typeof (input.config.ALIGN_CONTENT) != undefined) {
+                let toAdd = `align-content: ${input.config.ALIGN_CONTENT};\n`;
                 localCSS = localCSS.concat(toAdd);
             }
         }
