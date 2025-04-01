@@ -12,7 +12,8 @@ Main.setClasses = [
         {
             "NAME":".bye",
             "POSITION":"static",
-            "ALIGN_CONTENT":"center"
+            "ALIGN_CONTENT":"center",
+            "ANIMATION_DELAY":0.5
         }
     )
 ]

@@ -108,19 +108,19 @@ ${input.config.NAME} {
         }
         if(input.config.hasOwnProperty("ANIMATION_DELAY")){
             if(typeof(input.config.ANIMATION_DELAY)!=undefined){
-                let toAdd = `animation-delay: ${input.config.ANIMATION_DELAY};\n`
+                let toAdd = `animation-delay: ${input.config.ANIMATION_DELAY}${typeof(input.config.ANIMATION_DELAY)=="number"?"s":""};\n`
                 localCSS = localCSS.concat(toAdd);
             }
         }
         if(input.config.hasOwnProperty("ANIMATION_DIRECTION")){
             if(typeof(input.config.ANIMATION_DIRECTION)!=undefined){
-                let toAdd = `animation-direction: ${input.config.ANIMATION_DIRECTION};\n`
+                let toAdd = `animation-direction: ${input.config.ANIMATION_DIRECTION}${typeof(input.config.ANIMATION_DIRECTION)=="number"?"s":""};\n`
                 localCSS = localCSS.concat(toAdd);
             }
         }
         if(input.config.hasOwnProperty("ANIMATION_DURRATION")){
             if(typeof(input.config.ANIMATION_DURRATION)!=undefined){
-                let toAdd = `animation-durration: ${input.config.ANIMATION_DURRATION};\n`
+                let toAdd = `animation-durration: ${input.config.ANIMATION_DURRATION}${typeof(input.config.ANIMATION_DURRATION)=="number"?"s":""};\n`
                 localCSS = localCSS.concat(toAdd);
             }
         }
