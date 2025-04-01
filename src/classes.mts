@@ -20,6 +20,13 @@ export interface cssInput {
     "ACCENT_COLOR"?: cssRGBA; /*CSS acccent collor propertey*/
     "ALIGN_CONTENT"?:"normal"|"start"|"center"|"end"|"flex-start"|"flex-end"; /*there are more proppeties to add */
     "POSITION"?: "static"|"relative"|"absolute"|"fixed"|"sticky"; /*css position propertey*/
+    "ALIGN_ITEMS"? : "normal"|"stretch"|"center"|"flex-start"|"flex-end"|"start"|"end"|"baseline"|"initial"|"inherit"; /*css Align items property */
+    "ALIGN_SELF"? : "auto"|"stretch"|"center"|"flex-start"|"flex-end"|"baseline"|"initial"|"inherit"; /*css align-self propertey*/
+    "ALL"? : "initial"|"inherit"|"unset";/*css all propertey*/
+    "ANIMATION_DELAY"?: number|"initial"|"inherit";/*Css annimation dellay propertey*/
+    "ANIMATION_DIRECTION"?: "normal"|"reverse"|"alternate"|"alternate-reverse"|"initial"|"inherit";/*css annimation directon propertey*/
+    "ANIMATION_DURRATION"?: number|"initial"|"inherit"; /*CSS animation delay propertey*/
+
 
 }
 
@@ -78,6 +85,42 @@ ${input.config.NAME} {
         if(input.config.hasOwnProperty("POSITION")){
             if(typeof(input.config.POSITION)!=undefined){
                 let toAdd = `position: ${input.config.POSITION};\n`
+                localCSS = localCSS.concat(toAdd);
+            }
+        }
+        if(input.config.hasOwnProperty("ALIGN_ITEMS")){
+            if(typeof(input.config.ALIGN_ITEMS)!=undefined){
+                let toAdd = `align-items: ${input.config.ALIGN_ITEMS};\n`
+                localCSS = localCSS.concat(toAdd);
+            }
+        }
+        if(input.config.hasOwnProperty("ALIGN_SELF")){
+            if(typeof(input.config.ALIGN_SELF)!=undefined){
+                let toAdd = `align-self: ${input.config.ALIGN_SELF};\n`
+                localCSS = localCSS.concat(toAdd);
+            }
+        }
+        if(input.config.hasOwnProperty("ALL")){
+            if(typeof(input.config.ALL)!=undefined){
+                let toAdd = `all: ${input.config.ALL};\n`
+                localCSS = localCSS.concat(toAdd);
+            }
+        }
+        if(input.config.hasOwnProperty("ANIMATION_DELAY")){
+            if(typeof(input.config.ANIMATION_DELAY)!=undefined){
+                let toAdd = `animation-delay: ${input.config.ANIMATION_DELAY};\n`
+                localCSS = localCSS.concat(toAdd);
+            }
+        }
+        if(input.config.hasOwnProperty("ANIMATION_DIRECTION")){
+            if(typeof(input.config.ANIMATION_DIRECTION)!=undefined){
+                let toAdd = `animation-direction: ${input.config.ANIMATION_DIRECTION};\n`
+                localCSS = localCSS.concat(toAdd);
+            }
+        }
+        if(input.config.hasOwnProperty("ANIMATION_DURRATION")){
+            if(typeof(input.config.ANIMATION_DURRATION)!=undefined){
+                let toAdd = `animation-durration: ${input.config.ANIMATION_DURRATION};\n`
                 localCSS = localCSS.concat(toAdd);
             }
         }
