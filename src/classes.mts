@@ -1,3 +1,5 @@
+import fs from "fs";
+
 export class cssRGBA {
     r : number;
     g : number;
@@ -10,37 +12,80 @@ export class cssRGBA {
         this.b = b % 255;
         this.a = a;
     }
+    toRGB():string{
+        return `rgba(${r},${g},${b},${a})`
+    }
 }
 export interface cssInput {
-    "NAME" : string; /*name of the class with the dot so "<div class="hi"></div>" would be const whatever = new cssPropertey({NAME : .hi})*/
-    "ACCENT-COLOR"?: cssRGBA; /*CSS acccent collor propertey*/
-    "ALLIGN-CONTENT"?:"normal"|"start"|"center"|"end"|"flex-start"|"flex-end"; /*there are more proppeties to add */
+    "NAME" : string; /*name of the class with the dot so "<div class="hi"></div>" would be const whatever = new cssClass({NAME : .hi})*/
+    "ACCENT_COLOR"?: cssRGBA; /*CSS acccent collor propertey*/
+    "ALLIGN_CONTENT"?:"normal"|"start"|"center"|"end"|"flex-start"|"flex-end"; /*there are more proppeties to add */
     "POSITION"?: "static"|"relative"|"absolute"|"fixxed"|"sticky"; /*css position propertey*/
 
 }
 
-export class cssProperty {
+export class cssClass {
     config: cssInput;
 
     constructor(config: cssInput) {
         this.config = config;
     }
 }
-export class Main {
-    private static instance: Main | null = null;
+export class Main{
+    static #instance: Main;
+    public static _properties : cssClass[] = [];
+    
+    private constructor() { }
 
-    // Private constructor to prevent external instantiation
-    properties : cssProperty[];
-    private constructor(properties:cssProperty[]) {
-        this.properties = properties;
-    }
-
-    // Static method to get the instance
-    public static getInstance(): Main {
-        if (!Main.instance) {
-            Main.instance = new Main(this.properties);
+    public static get instance(): Main {
+        if (!Main.#instance) {
+            Main.#instance = new Main();
         }
-        return Main.instance;
+
+        return Main.#instance;
+    }
+    public static set setClasses(props:cssClass[]){
+        this._properties=props;
+    }
+    private static checkFileExists(filepath:string):boolean{
+        let flag = true;
+        try{
+          fs.accessSync(filepath, fs.constants.F_OK);
+        }catch(e){
+          flag = false;
+        }
+        return flag;
+    }
+    public static get getProps(){
+        return this._properties;
+    }
+    private static compileClass(input:cssClass):string{
+        let localCSS = 
+        `
+            ${input.config.NAME}{
+
+            
+        `
+        if(input.config.hasOwnProperty("ACCENT_COLOR")){
+            localCss+=`accent-color: ${input.config.ACCENT_COLOR.toRGB()}`
+        }
     }
 
+    public static compile(path:string):void{
+        const globalCssExisits:boolean = this.checkFileExists(path);
+
+        if(globalCssExisits){
+            try {
+                fs.unlinkSync(path);
+                console.log('CSS cleared');
+              } catch (error) {
+                throw new Error("An error occured deleting css: "+error);
+              }
+        }
+        let toWrite : string = "";
+
+        for(let i = 0; i < this.getProps.length; i++){
+
+        }
+    }
 }
