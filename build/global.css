@@ -1,0 +1,12 @@
+.hi {
+	accent-color: rgba(255, 255, 255, 1);
+	position: absolute;
+}
+.bye {
+	align-content: center;
+	position: static;
+	animation-delay: 0.5s;
+}
+p {
+	position: absolute;
+}
