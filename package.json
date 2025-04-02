@@ -3,16 +3,17 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "compile": "tsc; node dist/compile.mjs"
+    "test-temp": "tsc && node dist/test.mjs"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^22.13.16"
+    "@types/node": "^22.13.16",
+    "prettier": "3.5.3"
   },
   "dependencies": {
     "typescript": "^5.8.2"
-  }
+  },
+  "type": "module"
 }
