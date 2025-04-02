@@ -1,12 +1,19 @@
 .hi {
-	accent-color: rgba(255, 255, 255, 1);
-	position: absolute;
+accent-color: rgba(255,255,255,1);
+position: absolute;
+
 }
 .bye {
-	align-content: center;
-	position: static;
-	animation-delay: 0.5s;
+align-content: center;
+position: static;
+animation-delay: 0.5s;
+aspect-ratio: 10/40
 }
 p {
-	position: absolute;
+position: absolute;
+
+}
+.chase {
+aspect-ratio: initial;
+
 }

@@ -136,7 +136,7 @@ export class cssClass {
 				if (typeof this.config.ASPECT_RATIO == "object") {
 					toAdd = `aspect-ratio: ${this.config.ASPECT_RATIO.toASR()}`;
 				} else {
-					toAdd = `aspect-ratio: ${this.config.ASPECT_RATIO}};\n`;
+					toAdd = `aspect-ratio: ${this.config.ASPECT_RATIO};\n`;
 				}
 				localCSS = localCSS.concat(toAdd);
 			}
@@ -172,6 +172,9 @@ export class Main {
 	}
 	public static get getProps() {
 		return this._properties;
+	}
+	public static addProps(input: cssClass[]): void {
+		this._properties = this._properties.concat(input);
 	}
 
 	public static compile(path: string): void {

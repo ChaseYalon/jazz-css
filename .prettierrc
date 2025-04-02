@@ -7,5 +7,5 @@
 	"bracketSameLine": true,
 	"arrowParens": "always",
 	"singleAttributePerLine": false,
-	"printWidth": 1000
+	"printWidth": 10000
 }
