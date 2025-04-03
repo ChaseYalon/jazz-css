@@ -1,19 +1,23 @@
 {
-	"name": "jazz-css",
-	"version": "1.0.0",
-	"description": "",
-	"scripts": {
-		"test-temp": "tsc && node dist/test.mjs"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "MIT",
-	"devDependencies": {
-		"@types/node": "^22.13.16",
-		"prettier": "3.5.3"
-	},
-	"dependencies": {
-		"typescript": "^5.8.2"
-	},
-	"type": "module"
+  "name": "jazz-css",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test-temp": "tsc && node dist/test.mjs",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.26.10",
+    "@types/node": "^22.13.16",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0",
+    "prettier": "3.5.3",
+    "ts-jest": "^29.3.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  },
+  "type": "module"
 }

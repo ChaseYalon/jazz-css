@@ -1,4 +1,6 @@
 import fs from "fs";
+type ini = "initial"|"inherit";
+
 export class cssRGBA {
 	r: number;
 	g: number;
@@ -25,23 +27,47 @@ export class cssAspectRatio {
 		return `${this.numerator}/${this.denominator}`;
 	}
 }
+export class cssPosition{
+	x : number;
+	y : number;
+	constructor(x : number, y : number){
+		this.x = x;
+		this.y = y;
+	}
+	compile():string{
+		return `${this.x}% ${this.y}%`
+	}
+}
 export interface cssInput {
 	NAME: string /*name of the class with the dot so "<div class="hi"></div>" would be const whatever = new cssClass({NAME : .hi})*/;
 	ACCENT_COLOR?: cssRGBA /*CSS acccent collor propertey*/;
 	ALIGN_CONTENT?: "normal" | "start" | "center" | "end" | "flex-start" | "flex-end" /*there are more proppeties to add */;
 	POSITION?: "static" | "relative" | "absolute" | "fixed" | "sticky" /*css position propertey*/;
-	ALIGN_ITEMS?: "normal" | "stretch" | "center" | "flex-start" | "flex-end" | "start" | "end" | "baseline" | "initial" | "inherit" /*css Align items property */;
-	ALIGN_SELF?: "auto" | "stretch" | "center" | "flex-start" | "flex-end" | "baseline" | "initial" | "inherit" /*css align-self propertey*/;
-	ALL?: "initial" | "inherit" | "unset" /*css all propertey*/;
-	ANIMATION_DELAY?: number | "initial" | "inherit" /*Css annimation dellay propertey*/;
-	ANIMATION_DIRECTION?: "normal" | "reverse" | "alternate" | "alternate-reverse" | "initial" | "inherit" /*css annimation directon propertey*/;
-	ANIMATION_DURATION?: number | "initial" | "inherit" /*CSS animation delay propertey*/;
-	ANIMATION_FILL_MODE?: "none" | "forwards" | "backwards" | "both" | "initial" | "inherit" /*css annimation fill mode propertey*/;
-	ANIMATION_ITERATION_COUNT?: number | "infinite" | "initial" | "inherit" /*CSS annimation itteration count propertey*/;
-	ANIMATION_NAME?: string | "none" | "initial" | "inherit" /*string is keyframe name*/;
-	ANIMATION_PLAY_STATE?: "paused" | "running" | "initial" | "inherit" /*css animation play state prop */;
-	ANIMATION_TIMING_FUNCTION?: "linear" | "ease" | "ease-in" | "ease-out" | "ease-in-out" | "step-start" | "step-end" | "initial" | "inherit" /*there are more properties*/;
-	ASPECT_RATIO?: cssAspectRatio | "initial" | "inherit" /*css aspect ratio*/;
+	ALIGN_ITEMS?: "normal" | "stretch" | "center" | "flex-start" | "flex-end" | "start" | "end" | "baseline" | ini /*css Align items property */;
+	ALIGN_SELF?: "auto" | "stretch" | "center" | "flex-start" | "flex-end" | "baseline" | ini /*css align-self propertey*/;
+	ALL?: ini | "unset" /*css all propertey*/;
+	ANIMATION_DELAY?: number | ini /*Css annimation dellay propertey*/;
+	ANIMATION_DIRECTION?: "normal" | "reverse" | "alternate" | "alternate-reverse" | ini /*css annimation directon propertey*/;
+	ANIMATION_DURATION?: number | ini /*CSS animation delay propertey*/;
+	ANIMATION_FILL_MODE?: "none" | "forwards" | "backwards" | "both" | ini /*css annimation fill mode propertey*/;
+	ANIMATION_ITERATION_COUNT?: number | "infinite" | ini /*CSS annimation itteration count propertey*/;
+	ANIMATION_NAME?: string | "none" | ini /*string is keyframe name*/;
+	ANIMATION_PLAY_STATE?: "paused" | "running" | ini /*css animation play state prop */;
+	ANIMATION_TIMING_FUNCTION?: "linear" | "ease" | "ease-in" | "ease-out" | "ease-in-out" | "step-start" | "step-end" | ini/*there are more properties*/;
+	ASPECT_RATIO?: cssAspectRatio | ini /*css aspect ratio*/;
+	BACKDROP_FILTER?: "none"|string|ini;/*to use a custom filter pass it as a string*/
+	BACKFACE_VISIBILITY?: "visible"|"hidden"|ini;
+	/*add background psudeoclass */
+
+	BACKGROUND_ATTACHMENT?: "scroll"|"fixed"|"local"|ini;
+	BACKGROUND_BLEND_MODE?: "normal"|"multiply"|"screen"|"overlay"|"darken"|"lighten"|"color-dodge"|"saturation"|"color"|"luminosity";
+	BACKGROUND_CLIP?: "border-box"|"padding-box"|"content-box"|ini;
+	BACKGROUND_COLOR?: cssRGBA | "transparent"|ini;
+	BACKGROUND_IMAGE?: string|"none"|ini;/*to use a url pass it in as a string*/
+	BACKGROUND_ORIGIN?: "border-box"|"padding-box"|"content-box"|ini;
+	BACKGROUND_POSITION?: cssPosition|ini; /* css position only takes an x and a y between 0 and 100. TODO: add support for "center" etc. */
+	//add background position x  and y
+	BACKGROUND_REPEAT?: "repeat"|"repeat-x"|"repeat-y"|"no-repeat"|ini;
 }
 
 export class cssClass {
@@ -140,6 +166,84 @@ export class cssClass {
 				}
 				localCSS = localCSS.concat(toAdd);
 			}
+		}
+		if (this.config.hasOwnProperty("BACKDROP_FILTER")) {
+			let toAdd : string = "";
+			if(typeof this.config.BACKDROP_FILTER != undefined){
+				toAdd = `backdrop-filter: ${this.config.BACKDROP_FILTER}`;
+			}
+			localCSS = localCSS.concat(toAdd);
+		}
+		if (this.config.hasOwnProperty("BACKFACE_VISIBILITY")) {
+			let toAdd : string = "";
+			if(typeof this.config.BACKFACE_VISIBILITY != undefined){
+				toAdd = `backface-visibility: ${this.config.BACKFACE_VISIBILITY}`;
+			}
+			localCSS = localCSS.concat(toAdd);
+		}
+		if (this.config.hasOwnProperty("BACKGROUND_ATTACHMENT")) {
+			let toAdd : string = "";
+			if(typeof this.config.BACKGROUND_ATTACHMENT != undefined){
+				toAdd = `background-attachment: ${this.config.BACKGROUND_ATTACHMENT}`;
+			}
+			localCSS = localCSS.concat(toAdd);
+		}
+		if (this.config.hasOwnProperty("BACKGROUND_BLEND_MODE")) {
+			let toAdd : string = "";
+			if(typeof this.config.BACKGROUND_BLEND_MODE != undefined){
+				toAdd = `background-blend-mode: ${this.config.BACKGROUND_BLEND_MODE}`;
+			}
+			localCSS = localCSS.concat(toAdd);
+		}
+		if (this.config.hasOwnProperty("BACKGROUND_CLIP")) {
+			let toAdd : string = "";
+			if(typeof this.config.BACKGROUND_CLIP != undefined){
+				toAdd = `backgrond-clip: ${this.config.BACKGROUND_CLIP}`;
+			}
+			localCSS = localCSS.concat(toAdd);
+		}
+		if (this.config.hasOwnProperty("BACKGROUND_COLOR")) {
+			let toAdd : string = "";
+			if(typeof this.config.BACKGROUND_COLOR != undefined){
+				if (typeof this.config.BACKGROUND_COLOR == "object"){
+					toAdd = `background-color: ${this.config.BACKGROUND_COLOR.toRGB()}`
+				}else{
+					toAdd = `background-color: ${this.config.BACKGROUND_COLOR}`;
+
+				}
+			}
+			localCSS = localCSS.concat(toAdd);
+		}
+		if (this.config.hasOwnProperty("BACKGROUND_IMAGE")) {
+			let toAdd : string = "";
+			if(typeof this.config.BACKGROUND_IMAGE != undefined){
+				toAdd = `backgrond-image: ${this.config.BACKGROUND_IMAGE}`;
+			}
+			localCSS = localCSS.concat(toAdd);
+		}
+		if (this.config.hasOwnProperty("BACKGROUND_ORIGIN")) {
+			let toAdd : string = "";
+			if(typeof this.config.BACKGROUND_ORIGIN != undefined){
+				toAdd = `backgrond-origin: ${this.config.BACKGROUND_ORIGIN}`;
+			}
+			localCSS = localCSS.concat(toAdd);
+		}
+		if (this.config.hasOwnProperty("BACKGROUND_POSITION")) {
+			let toAdd : string = "";
+			if(typeof this.config.BACKGROUND_POSITION != undefined){
+				if (typeof this.config.BACKGROUND_POSITION == "object"){
+					toAdd = `background-position: ${this.config.BACKGROUND_POSITION.compile()}`
+				}
+				toAdd = `backgrond-position: ${this.config.BACKGROUND_POSITION}`;
+			}
+			localCSS = localCSS.concat(toAdd);
+		}
+		if (this.config.hasOwnProperty("BACKGROUND_REPEAT")) {
+			let toAdd : string = "";
+			if(typeof this.config.BACKGROUND_REPEAT != undefined){
+				toAdd = `backgrond-repeat: ${this.config.BACKGROUND_REPEAT}`;
+			}
+			localCSS = localCSS.concat(toAdd);
 		}
 		localCSS = localCSS.concat("\n}\n");
 		return localCSS;

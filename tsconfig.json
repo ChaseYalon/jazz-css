@@ -8,8 +8,9 @@
 		"moduleResolution": "nodenext",
 		"outDir": "./dist",
 		"module": "NodeNext",
-		"allowJs": true
+		"allowJs": true,
+
 	},
-	"include": ["src"],
+	"include": ["src", "tests/classes.test.mts"],
 	"exclude": ["node_modules"]
 }
