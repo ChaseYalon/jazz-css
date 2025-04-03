@@ -3,17 +3,20 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "test-temp": "tsc && node dist/test.mjs",
-    "test": "mocha"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
+  "main": "src/classes.mjs",
   "keywords": [],
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@types/mocha": "^10.0.10",
-    "chai": "^5.2.0",
-    "mocha": "^11.1.0",
-    "tsx": "^4.19.3",
+    "@babel/cli": "^7.27.0",
+    "@babel/core": "^7.26.10",
+    "@babel/preset-env": "^7.26.9",
+    "@types/jest": "^29.5.14",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.3.1",
     "types-node": "^0.0.1-security",
     "typescript": "^5.8.2"
   },

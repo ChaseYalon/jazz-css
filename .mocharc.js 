@@ -1,6 +1,0 @@
-    module.exports = {
-        require: ['ts-node/esm'],
-        spec: 'test/**/*.spec.mts', // Or your test file pattern
-        extension: ['mts'],
-        reporter: 'spec',
-    };
